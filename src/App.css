@@ -1,0 +1,240 @@
+#App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #1f1f1f;
+  color: #DDDDDD;
+}
+
+#nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 3rem;
+}
+
+#about {
+  display: flex;
+  align-items: center;
+  padding: 0.2rem;
+  transition: 0.2s ease-in-out;
+  border: 2px solid transparent;
+}
+
+#about:hover {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+#about > svg {
+  margin-right: 5px;
+  margin-bottom: -3px;
+}
+
+#todo-container {
+  width: 40%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 1rem 2rem;
+  border-radius: 25px 25px 0px 0px;
+  border-left: 2px solid #3e3e3e;
+  border-right: 2px solid #3e3e3e;
+  border-top: 2px solid #3e3e3e;
+}
+
+#todo-editor {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  height: 40px;
+  margin: 1rem 0px;
+}
+
+#todo-editor > input {
+  flex: 1;
+  height: inherit;
+  margin-right: 0.5rem;
+  border-radius: 10px;
+  padding: 0.4rem 1rem;
+  border: none;
+  background-color: #363636;
+  color: white;
+}
+
+#todo-editor > button {
+  height: inherit;
+  padding: 0px 1rem;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+}
+
+#category-tabs {
+  display: flex;
+  align-items: center;
+}
+
+.category-tab-item {
+  color: #797979;
+  font-weight: 500;
+  padding: 0.2rem 0.4rem;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.category-tab-item.active {
+  color: var(--text-color);
+  border-bottom: 2px solid var(--primary-color);
+  animation: appear 1s ease-out;
+}
+
+#category-tabs > button {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  gap: 5px;
+  padding: 0.4rem 0.6rem;
+  border-radius: 100px;
+  color: white;
+  font-weight: 400;
+  background-color: rgb(from var(--primary-color) r g b / 20%);
+}
+
+#todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 0px 0.6rem;
+  background-color: #282828;
+  border-radius: 8px;
+  gap: 4px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  
+  & > p {
+    flex: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: var(--text-color);
+    font-size: 0.9rem;
+  }
+  
+  & > .completed {
+    text-decoration: line-through;
+    animation: todo-done 0.4s ease-in-out;
+    color: #898989;
+  }
+}
+
+.todo-actions {
+  display: none;
+  gap: 5px;
+  font-size: 20px;
+  animation: appear 0.4s ease-in-out;
+}
+
+.todo-item:hover {
+  background-color: #363738;
+  .todo-actions {
+    display: flex;
+  }
+}
+
+.todo-actions > svg {
+  color: #aeaeae;
+}
+
+.checkbox {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 1.7rem;
+  color: var(--primary-color);
+}
+
+.checkbox .check-filled {
+  color: #5b5b5b;
+}
+
+.edit-dialog {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(24, 25, 26, 0.707);
+  border: none;
+  position: relative;
+}
+
+.dialog-container {
+  background-color: #2d2e2f;
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  align-items: end;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  border-radius: 10px;
+  gap: 10px;
+  padding: 1.4rem 2rem;
+  animation: pop-up 0.4s ease-in-out;
+}
+
+.dialog-container > textarea {
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #b5bec1;
+  font-weight: 500;
+  font-size: 1rem;
+  resize: none;
+}
+
+.dialog-container > textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.dialog-container > button {
+  background-color: #545658;
+  outline: none;
+  color: #bdb6b6;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+}
+
+.dialog-container > #done-button {
+  background-color: #e37c35;
+  color: white;
+}
+
+@keyframes todo-done {
+  0% { transform: translateX(0px); opacity: 0.3; }
+  50% { transform: translateX(3px); }
+  70% { transform: translateX(-3px); }
+  100% { transform: translateX(0px); opacity: 1; }
+}
+
+@keyframes appear {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes pop-up {
+  from { opacity: 0; scale: 0; }
+  to { opacity: 1; }
+}
